@@ -1,0 +1,22 @@
+{
+  "name": "sql-splitter-tauri",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build --bundles app",
+    "tauri:build:mac": "tauri build --bundles app",
+    "tauri:build:windows": "tauri build --bundles nsis",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "vite": "^7.0.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}

@@ -1,0 +1,47 @@
+name: Build Desktop Apps
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos
+            os: macos-latest
+            script: tauri:build:mac
+            artifact: src-tauri/target/release/bundle/macos/**
+          - platform: windows
+            os: windows-latest
+            script: tauri:build:windows
+            artifact: src-tauri/target/release/bundle/nsis/**
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run ${{ matrix.script }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sql-splitter-${{ matrix.platform }}
+          path: ${{ matrix.artifact }}
+          if-no-files-found: error

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL 拆分工具</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="tool">
+        <header class="tool-header">
+          <div>
+            <h1>SQL 拆分工具</h1>
+            <p>将大型 SQL 备份拆成可单独执行的分片。</p>
+          </div>
+          <span id="statusBadge" class="status-badge">就绪</span>
+        </header>
+
+        <div class="form-grid">
+          <label for="inputPath">SQL 文件</label>
+          <div class="path-row">
+            <input id="inputPath" type="text" spellcheck="false" />
+            <button id="chooseFile" type="button">浏览</button>
+          </div>
+
+          <label for="outputDir">输出目录</label>
+          <div class="path-row">
+            <input id="outputDir" type="text" spellcheck="false" />
+            <button id="chooseOutput" type="button">浏览</button>
+          </div>
+
+          <label for="parts">分片数量</label>
+          <input id="parts" class="short-input" type="number" min="1" max="999" value="5" />
+        </div>
+
+        <div class="actions">
+          <button id="startSplit" class="primary" type="button">开始拆分</button>
+        </div>
+
+        <div class="progress-wrap" aria-live="polite">
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <div id="progressText" class="progress-text">等待选择文件</div>
+        </div>
+
+        <pre id="log" class="log" aria-label="运行日志"></pre>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
