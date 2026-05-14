@@ -21,7 +21,7 @@ jobs:
           - platform: windows
             os: windows-latest
             script: tauri:build:windows
-            artifact: src-tauri/target/release/bundle/nsis/**
+            artifact: src-tauri/target/release/sql_splitter_tauri.exe
 
     steps:
       - uses: actions/checkout@v4

@@ -25,7 +25,7 @@ or:
 ./build_macos.sh
 ```
 
-Build a Windows installer on Windows:
+Build a portable Windows executable on Windows:
 
 ```bash
 npm run tauri:build:windows
@@ -37,13 +37,31 @@ or:
 build_windows.bat
 ```
 
-Build artifacts are created under `src-tauri/target/release/bundle`. Build on
-macOS for macOS users and on Windows for Windows users. The generic
-`npm run tauri:build` currently builds the macOS `.app` bundle.
+The portable executable is created at:
+
+```text
+src-tauri/target/release/sql_splitter_tauri.exe
+```
+
+`build_windows.bat` also copies it to:
+
+```text
+SQL拆分工具.exe
+```
+
+If you need a Windows installer instead, run:
+
+```bash
+npm run tauri:build:windows:installer
+```
+
+Build artifacts are OS-specific. Build on macOS for macOS users and on Windows
+for Windows users. The generic `npm run tauri:build` currently builds the macOS
+`.app` bundle.
 
 This repository also includes `.github/workflows/build-desktop.yml`. After pushing
 the project to GitHub, run the workflow manually or push a `v*` tag to build macOS
-and Windows artifacts on native runners.
+`.app` and Windows portable `.exe` artifacts on native runners.
 
 The Rust backend splits at SQL statement boundaries and writes balanced output
 parts without loading the whole SQL file into memory.

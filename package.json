@@ -8,7 +8,8 @@
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build --bundles app",
     "tauri:build:mac": "tauri build --bundles app",
-    "tauri:build:windows": "tauri build --bundles nsis",
+    "tauri:build:windows": "tauri build --no-bundle",
+    "tauri:build:windows:installer": "tauri build --bundles nsis",
     "build": "vite build"
   },
   "dependencies": {
