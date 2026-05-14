@@ -1,3 +1,5 @@
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
 use serde::Serialize;
 use std::fs::{self, File};
 use std::io::{BufReader, BufWriter, Read, Write};
